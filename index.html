@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Mu Nightmare</title>
+    <link rel="stylesheet" href="shared/style.css">
+    <link rel="stylesheet" href="shared/navbar.css">
+    <link rel="stylesheet" href="pages/home/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="shared/i18n/en.js"></script>
+    <script src="shared/i18n/pt.js"></script>
+    <script src="shared/content.js"></script>
+    <script src="shared/news.js"></script>
+</head>
+
+<body>
+<canvas id="particle-canvas"></canvas>
+
+<div class="site-wrap">
+
+    <div id="siteHeader"></div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="hero-ornament"><span>◆</span></div>
+        <h1 class="hero-title">Mu Nightmare</h1>
+        <p class="hero-subtitle" data-i18n-content="heroTagline">A Darker World Awaits</p>
+        <div class="hero-bottom-ornament"><span>◆</span></div>
+    </section>
+
+    <!-- ═══ RATES STRIP ═══ -->
+    <div class="rates-strip" id="ratesStrip"></div>
+
+    <!-- ═══ STATUS ROW — download + server card, text from /shared/content.js ═══ -->
+    <div class="status-row">
+
+        <a class="sr-card sr-download" id="downloadBtn" href="#" target="_blank" rel="noopener">
+            <img class="sr-dl-icon" src="images/download-icon.png" alt="">
+            <div class="sr-body">
+                <span class="sr-download-title" data-i18n="navDownload">Download</span>
+                <span class="sr-download-sub" id="downloadSub">Game Client</span>
+            </div>
+        </a>
+
+        <div class="sr-card sr-server">
+            <img class="sr-icon" src="images/book-icon.png" alt="">
+            <div class="sr-body">
+                <div class="sr-line">
+                    <span class="sr-name" id="serverName">Mu Nightmare</span>
+                    <span class="sr-status" id="indexStatusText"><span class="sdot"></span>—</span>
+                </div>
+                <div class="sr-bar"><span id="playersBar"></span></div>
+                <div class="sr-line">
+                    <span class="sr-desc" id="serverDesc"></span>
+                    <span class="sr-players">
+                        <span class="sr-players-label" data-i18n="playersOnline">Online Players</span>
+                        <span class="sr-players-val" id="indexPlayersText">—</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ NEWS — slider + latest list, fed by /shared/news.js ═══ -->
+    <section class="news-area" id="newsArea" hidden>
+        <div class="news-slider" id="newsSlider">
+            <div class="news-slides" id="newsSlides"></div>
+            <button type="button" class="news-arrow news-prev" id="newsPrev" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="news-arrow news-next" id="newsNext" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="news-dots" id="newsDots"></div>
+        </div>
+
+        <div class="news-panel">
+            <div class="news-panel-head">
+                <h2 class="news-panel-title" data-i18n="newsLatest">Latest News</h2>
+            </div>
+            <div class="news-list" id="newsList"></div>
+        </div>
+    </section>
+
+    <!-- ═══ TOP HUNTERS — preview of /stats ═══ -->
+    <section class="home-section" id="topHunters" hidden>
+        <div class="section-head">
+            <span class="section-eyebrow" data-i18n="rankingEyebrow">Hall of Fame</span>
+            <h2 class="section-title" data-i18n="homeTopTitle">Top Hunters</h2>
+        </div>
+        <div class="top-list" id="topList"></div>
+        <a class="section-more" href="/stats">
+            <span data-i18n="homeTopViewAll">View full ranking</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <!-- ═══ COMMUNITY ═══ -->
+    <section class="join-band">
+        <i class="fa-brands fa-discord join-icon"></i>
+        <div class="join-text">
+            <h3 data-i18n="homeJoinTitle">Join the Nightmare</h3>
+            <p data-i18n="homeJoinText">Events, support and announcements happen on our Discord.</p>
+        </div>
+        <a class="join-btn" id="joinDiscordBtn" href="#" target="_blank" rel="noopener">
+            <span data-i18n="homeJoinBtn">Enter Discord</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <div id="siteFooter"></div>
+
+</div>
+
+<script src="shared/layout.js"></script>
+<script src="pages/home/home.js"></script>
+</body>
+</html>

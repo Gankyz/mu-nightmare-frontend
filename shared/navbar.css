@@ -1,0 +1,481 @@
+/* ══════════════════════════════
+   FULL-PAGE LAYOUT
+   Required by any page with .top-bar
+══════════════════════════════ */
+body {
+    padding: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.site-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Centered content area — form and data pages */
+.page-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+}
+
+/* ══════════════════════════════
+   TOP BAR
+══════════════════════════════ */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 2.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: linear-gradient(180deg, rgba(4,3,7,0.94) 0%, rgba(6,5,9,0.88) 100%);
+    backdrop-filter: blur(14px) saturate(0.85);
+    -webkit-backdrop-filter: blur(14px) saturate(0.85);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Blood seeping from the underside of the bar */
+.top-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(187,24,24,0.55) 25%,
+        rgba(184,134,11,0.45) 50%,
+        rgba(187,24,24,0.55) 75%,
+        transparent 100%);
+    pointer-events: none;
+}
+
+.top-brand {
+    font-family: var(--font-display);
+    font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+    font-weight: 900;
+    letter-spacing: clamp(2px, 0.5vw, 5px);
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--gold-bright) 0%, #e8c060 40%, var(--red-bright) 65%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(187,24,24,0.5));
+    transition: filter 0.3s;
+}
+
+.top-brand:hover {
+    filter: drop-shadow(0 0 22px rgba(187,24,24,0.8)) drop-shadow(0 0 10px rgba(184,134,11,0.5));
+}
+
+/* ── Logo ── */
+.top-logo {
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+    transition: transform 0.3s;
+}
+
+.top-logo img {
+    width: auto;
+    height: 64px;
+    margin: -7px 0;
+    display: block;
+    mix-blend-mode: screen;
+}
+
+.top-logo:hover {
+    transform: translateY(-2px);
+}
+
+.top-logo:hover img {
+    filter: drop-shadow(0 0 10px rgba(187,24,24,0.6));
+}
+
+.top-nav {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+/* ── Nav item base ── */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0.6rem 0.95rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 0.48rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.22s, background 0.22s;
+    border-bottom: 2px solid transparent;
+    user-select: none;
+}
+
+/* Ember glow rising from the nav item's base on hover/active */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(184,134,11,0.16), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.22s;
+    pointer-events: none;
+}
+
+.nav-item i:first-child {
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.22s, text-shadow 0.22s;
+}
+
+.nav-item > span { position: relative; }
+
+.nav-item:hover,
+.nav-item:hover > i:first-child { color: var(--gold-bright); }
+
+.nav-item:hover > i:first-child { text-shadow: 0 0 14px rgba(184,134,11,0.55); }
+
+.nav-item:hover { border-bottom-color: rgba(184,134,11,0.4); }
+.nav-item:hover::before { opacity: 1; }
+
+/* Active nav item */
+.nav-item.nav-active {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold);
+}
+
+.nav-item.nav-active::before { opacity: 1; }
+
+.nav-item.nav-active > i:first-child {
+    color: var(--gold-bright);
+    text-shadow: 0 0 14px rgba(184,134,11,0.55);
+}
+
+/* Download button */
+.nav-download i:first-child { color: var(--red-bright); }
+.nav-download::before { background: linear-gradient(to top, rgba(212,32,32,0.22), transparent 70%); }
+.nav-download:hover,
+.nav-download:hover i:first-child { color: #ff4444; text-shadow: 0 0 14px rgba(212,32,32,0.6); }
+.nav-download:hover { border-bottom-color: rgba(212,32,32,0.4); }
+
+.nav-label { display: inline-flex; align-items: center; }
+
+.nav-caret {
+    font-size: 0.55rem !important;
+    opacity: 0.6;
+    margin-left: 3px;
+    transition: transform 0.22s;
+}
+
+/* ── Dropdown ── */
+.nav-dropdown { position: relative; }
+
+.nav-dropdown .dropdown-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 230px;
+    background: linear-gradient(180deg, rgba(12,9,15,0.99) 0%, rgba(5,4,8,0.99) 100%);
+    border: 1px solid rgba(184,134,11,0.2);
+    border-top: 2px solid var(--gold);
+    box-shadow:
+        0 24px 70px rgba(0,0,0,0.9),
+        0 0 30px rgba(184,134,11,0.07),
+        inset 0 1px 0 rgba(184,134,11,0.08);
+    z-index: 200;
+    padding: 6px 0;
+}
+
+.nav-dropdown:hover .dropdown-panel,
+.nav-dropdown:focus-within .dropdown-panel {
+    display: block;
+    animation: dropIn 0.18s cubic-bezier(0.22,1,0.36,1);
+}
+
+.nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Dropdown items ── */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: background 0.18s, color 0.18s;
+    border-left: 2px solid transparent;
+}
+
+.dropdown-item:hover {
+    background: rgba(184,134,11,0.06);
+    color: var(--text-bright);
+    border-left-color: var(--gold);
+}
+
+.dropdown-item > i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.7;
+    transition: opacity 0.18s;
+    flex-shrink: 0;
+}
+
+.dropdown-item:hover > i { opacity: 1; }
+
+.dropdown-item-text { display: flex; flex-direction: column; gap: 2px; }
+
+.dropdown-item-text strong {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    font-weight: 600;
+}
+
+.dropdown-item-text small {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: none;
+    font-family: var(--font-body);
+}
+
+.dropdown-sep { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 0; }
+
+.top-right { display: flex; align-items: center; gap: 0.7rem; }
+
+/* Logout button — injected by layout.js when logged in */
+.btn-logout {
+    background: transparent;
+    border: 1px solid rgba(187,24,24,0.3);
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-logout:hover {
+    color: var(--red-bright);
+    border-color: var(--red);
+}
+
+/* Login / sign-up buttons — shown when logged out */
+.auth-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s, color 0.2s, filter 0.2s, transform 0.2s;
+}
+
+.auth-btn i { font-size: 0.8rem; }
+
+.auth-login {
+    color: #f0e0c0;
+    background: linear-gradient(135deg, #6e0a0a 0%, #a01414 55%, #bb1818 100%);
+    border: 1px solid rgba(212,32,32,0.55);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 14px rgba(187,24,24,0.25);
+}
+
+.auth-login:hover,
+.auth-login.current {
+    filter: brightness(1.15);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 22px var(--red-glow);
+    transform: translateY(-1px);
+}
+
+.auth-play {
+    color: var(--gold-bright);
+    background: rgba(10,8,14,0.6);
+    border: 1px solid var(--gold);
+}
+
+.auth-play:hover,
+.auth-play.current {
+    color: var(--text-bright);
+    background: rgba(184,134,11,0.12);
+    box-shadow: 0 0 16px var(--gold-glow);
+    transform: translateY(-1px);
+}
+
+/* ══════════════════════════════
+   SITE FOOTER
+══════════════════════════════ */
+.site-footer {
+    margin-top: auto;
+    padding: 1.6rem 3rem;
+    border-top: 1px solid var(--border-dim);
+    background: linear-gradient(to bottom, transparent, rgba(1,0,3,0.75));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+/* Matching blood line along the footer's top edge */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(187,24,24,0.4) 50%, transparent);
+    pointer-events: none;
+}
+
+.site-footer .footer-nav {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* ══════════════════════════════
+   MOBILE MENU
+   The toggle is injected by layout.js and stays hidden on desktop,
+   where the horizontal nav is already visible.
+══════════════════════════════ */
+.nav-toggle {
+    display: none;
+    width: auto;
+    margin: 0;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid rgba(184,134,11,0.3);
+    color: var(--gold-bright);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.nav-toggle:hover { border-color: var(--gold); color: var(--text-bright); }
+
+/* The button reuses the shared <button> element styles, which paint a
+   red sweep on hover — cancel it here so the toggle stays quiet. */
+.nav-toggle::before { content: none; }
+
+/* Not enough room for labelled auth buttons next to the full nav */
+@media (max-width: 1320px) {
+    .auth-btn      { padding: 8px 11px; }
+    .auth-btn span { display: none; }
+}
+
+@media (max-width: 900px) {
+    .top-bar   { padding: 0.9rem 1.25rem; }
+    .nav-item  { padding: 0.6rem 0.7rem; letter-spacing: 1.5px; }
+    .site-footer { padding: 1.75rem 1.25rem; }
+}
+
+@media (max-width: 960px) {
+    .nav-toggle { display: block; order: 3; }
+
+    .top-bar   { flex-wrap: wrap; padding: 0.85rem 1.1rem; }
+    .top-logo img { height: 48px; margin: -6px 0; }
+    .top-right { order: 2; margin-left: auto; gap: 0.5rem; }
+    .page-main { padding: 2rem 1rem; }
+
+    /* Collapsed drawer: full-width, below the bar, revealed by .nav-open */
+    .top-nav {
+        order: 4;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease;
+    }
+
+    .top-bar.nav-open .top-nav {
+        max-height: 80vh;
+        overflow-y: auto;
+        opacity: 1;
+        margin-top: 0.85rem;
+    }
+
+    /* Stacked rows instead of icon-over-label tiles */
+    .top-nav .nav-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 0.85rem 0.5rem;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .top-nav .nav-item i:first-child { width: 22px; text-align: center; }
+
+    /* Dropdowns become always-open inline sections — there is no hover on touch */
+    .top-nav .nav-dropdown {
+        flex-wrap: wrap;
+        padding-bottom: 0;
+        cursor: default;
+    }
+    .nav-dropdown::before   { content: none; }
+    .nav-dropdown .nav-caret { display: none; }
+
+    .nav-dropdown .dropdown-panel {
+        display: block;
+        position: static;
+        transform: none;
+        flex-basis: 100%;
+        min-width: 0;
+        margin: 0.6rem 0 0;
+        background: rgba(0,0,0,0.35);
+        border: none;
+        border-left: 2px solid rgba(184,134,11,0.3);
+        box-shadow: none;
+        animation: none;
+        padding: 0;
+    }
+
+    .dropdown-item { padding: 0.7rem 1rem; }
+}
